@@ -6,8 +6,21 @@
   font-size: smaller;
 }
 
-.text-subtle    { color: @text-color-subtle; }
-.text-highlight { color: @text-color-highlight; }
+.text-subtle    {
+  color: @text-color-subtle;
+  font-weight: 200;
+}
+.text-highlight {
+  color: @text-color-highlight;
+  font-weight: 500;
+}
+
+.text-info,
+.text-success,
+.text-warning,
+.text-error {
+  font-weight: 400;
+}
 
 .text-info    { color: @text-color-info; }
 .text-success { color: @text-color-success; }
@@ -23,18 +36,57 @@
 .highlight-error   { .highlight-mixin(@background-color-error); }
 .highlight-success { .highlight-mixin(@background-color-success); }
 
-.highlight-mixin(@color) {
-  padding: 1px 4px;
+.highlight {
   color: @text-color-highlight;
-  border-radius: @component-border-radius;
-  background-color: @color;
 }
 
+.highlight-mixin(@color) {
+  padding: 1px 4px;
+  color: #eee;
+  border-radius: @component-border-radius;
+  background-color: @color;
+  border: 1px solid darken(@color, 10%);
+}
+
+// Weird glitch where highlights create colored areas at the top of their text
+// editors.
+.highlights > .highlight {
+  border-width: 0;
+}
 
 // Background Message ---------------
 // Shown when no tabs are open.
 
 .background-message {
-  font-weight: bold;
-  color: @text-color-subtle;
+  font-weight: 700;
+  color: fade(saturate(@text-color, 20%), 40%);
+  letter-spacing: -1px;
+}
+
+.section-heading {
+  font-weight: 600 !important;
+  letter-spacing: -0.6px;
+}
+
+label {
+  font-weight: 600;
+}
+
+.setting-title {
+  font-weight: 500;
+}
+
+.setting-description {
+  font-weight: 300;
+}
+
+table.table.text {
+  th {
+    font-weight: 600;
+  }
+}
+
+.error-messages,
+.info-messages {
+  font-weight: 500;
 }

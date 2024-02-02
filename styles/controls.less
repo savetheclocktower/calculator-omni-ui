@@ -1,0 +1,81 @@
+.input-select() {
+  .box-shadow(2px, @button-shadow-color);
+  // background-color: lighten(@button-background-color, 5%);
+  margin-right: @component-padding;
+  border: 1px solid @button-border-color;
+  font-weight: 400;
+
+  &:hover,
+  &:focus {
+    .box-shadow(2px, @button-border-color-hover);
+  }
+
+  &:hover:before,
+  &:focus:before {
+    .box-shadow(2px, @button-border-color-hover);
+  }
+}
+
+.settings-view {
+  select.form-control {
+    .input-select();
+  }
+}
+
+.input-select {
+  .input-select();
+}
+
+.input-generic {
+  .box-shadow(2px);
+  border: 1px solid @input-border-color;
+  background-color: @app-background-color;
+
+  &:not(:checked) {
+    background-color: @app-background-color;
+  }
+
+  &:checked {
+    background-color: @background-color-selected;
+  }
+
+  &:active {
+    transform: translate(1px, 1px);
+  }
+
+  &:before, &:after {
+    background-color: @input-checkbox-foreground-color;
+  }
+}
+
+atom-text-editor[mini] {
+  .box-shadow(2px, @button-shadow-color);
+}
+
+.input-checkbox {
+  .input-generic();
+}
+
+.input-radio {
+  .input-generic();
+}
+
+.input-toggle {
+  .input-generic();
+}
+
+.input-range {
+  &::-webkit-slider-thumb {
+    .input-generic();
+    transform: translate(-1px, -1px);
+
+    &:active {
+      background-color: @background-color-selected;
+      transform: translate(0px, 0px);
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    // TODO
+  }
+}

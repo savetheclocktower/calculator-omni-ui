@@ -1,0 +1,91 @@
+@base-color: hsl(205, 10%, 35%);
+@base-hue: hue(@base-color);
+@base-lightness: 80%;
+@base-lightness-inverted: 20%;
+
+// LIGHT MODE
+// ==========
+
+@text-color:           hsl(@base-hue, 10%, 35%);
+@text-color-subtle:    fade(hsl(@base-hue,  20%, 35%), 75%);
+@text-color-highlight: hsl(@base-hue, 20%, 20%);
+@text-color-selected:  hsl(@base-hue, 90%, 93%);
+
+@text-color-info:    hsl(218, 82%, 24%);
+@text-color-success: hsl(140, 44%, 32%);
+@text-color-warning: hsl(35,  67%, 44%);
+@text-color-error:   hsl(10, 100%, 34%);
+
+// Background colors
+@background-color-info:    hsl(200, 90%, 40%);
+@background-color-success: hsl(160, 70%, 36%);
+@background-color-warning: hsl(32,  60%, 37%);
+@background-color-error:   hsl(0,   71%, 35%);
+
+// Base colors
+@base-background-color: hsl(@base-hue, 20%, 91%);
+@base-border-color:     darken(@base-background-color, 20%);
+
+@background-color-highlight: hsl(@base-hue, 61%, 77%);
+@background-color-selected:  fade( hsl(@base-hue, 85%, 40%), 85% );
+
+@app-background-color: @base-background-color;
+
+// Component colors
+// (settings pane background)
+@pane-item-background-color: hsl(@base-hue, 30%, 96%);
+@pane-item-border-color:     darken(@pane-item-background-color, 20%);
+
+@input-background-color: hsl(@base-hue, 0%, 100%);
+@input-border-color:     hsl(@base-hue, 29%, 43%);
+@input-focus-color:     hsl(@base-hue, 29%, 43%);
+@input-checkbox-foreground-color: @base-background-color;
+
+@kbd-background-color: @input-background-color;
+@kbd-border-color: @input-border-color;
+
+// Status bar
+@tool-panel-background-color: hsl(@base-hue, 26%, 92%);
+@tool-panel-border-color:     darken(@tool-panel-background-color, 20%);
+
+@inset-panel-background-color: lighten(@base-background-color, 8%);
+@inset-panel-border-color:     darken(@base-border-color, 10%);
+@inset-panel-shadow-color:     darken(@inset-panel-border-color, 40%);
+
+@panel-heading-background-color: saturate(@base-background-color, 5%);
+@panel-heading-border-color:     @base-border-color;
+
+@overlay-background-color: lighten(@base-background-color, 5%);
+@overlay-border-color:     @base-border-color;
+
+@button-background-color:          hsl(@base-hue, 88%, 98%);
+@button-background-color-hover:    lighten(@button-background-color, 6%);
+@button-background-color-selected: darken(@text-color-selected, 8%);
+@button-border-color:              darken(@button-background-color, 70%);
+@button-border-color-hover:        lighten(@button-border-color, 9%);
+@button-inset-shadow-color: rgba(0, 0, 0, 0.1);
+
+@button-text-color: saturate(darken(@text-color, 6%), 8%);
+
+@tab-bar-background-color:    darken(@base-background-color, 5%);
+@tab-bar-border-color:        transparent;
+
+@tab-background-color:        lighten(@base-background-color, 5%);
+@tab-background-color-active: @background-color-selected;
+@tab-border-color:            @base-border-color;
+
+@tree-view-background-color: hsl(@base-hue, 99%, 99%);
+@tree-view-border-color:     saturate(@base-border-color, 30%);
+
+@settings-view-panel-background-color: saturate(@pane-item-background-color, 10%);
+
+@scrollbar-background-color: @base-background-color;
+@scrollbar-color: darken(@base-background-color, 30%);
+
+@status-bar-background-color: transparent;
+@package-card-background-color: @base-background-color;
+
+@box-shadow-color: fade(@button-border-color, 40%);
+
+@button-shadow-color: lighten(@button-border-color, 10%);
+@button-shadow-color-hover: lighten(@button-shadow-color, 9%);

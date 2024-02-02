@@ -1,38 +1,109 @@
 
 // Lists
-// -------------------
+// -----
 
 // Used in different places, like the Tree View, Commmand Palette etc.
 // Overrides: atom/static/lists.less
 
-// List Group -------------------
+// List Group
+// ----------
+
 .list-group {
   li {
-    padding-left: @component-padding/2;
+    padding-left: (@component-padding / 2);
 
-    // We want to highlight the background of the list items because we dont know their size.
+    // We want to highlight the background of the list items because we don't
+    // know their size.
     &.selected {
       color: @text-color-selected;
       background-color: @background-color-selected;
-      &:before{ display: none; }
+      &::before {
+        display: none;
+      }
     }
+  }
+
+  .icon::before {
+    top: 2px;
   }
 }
 
+// List Tree
+// ---------
 
-// List Tree -------------------
-.list-tree {
-  color: @text-color;
-  .selected {
+.list-tree,
+.list-tree.has-flat-children {
+  .list-item.selected {
     color: @text-color-selected;
   }
 }
 
+.list-tree.has-collapsable-children {
+  .list-nested-item > .list-tree > li {
+    &.selected > .name {
+      color: @text-color-selected;
+    }
+  }
+}
 
-// Select List -------------------
+// The selected item should have its icons change color along with the text.
+// As it happens, this requires lots of rules.
+.list-nested-item.selected > .list-item {
+
+  &::before {
+    color: @text-color-selected !important;
+  }
+
+  & > .name {
+    color: @text-color-selected !important;
+  }
+
+  & > .icon::before {
+    color: @text-color-selected !important;
+  }
+}
+
+.list-item.selected {
+  & > .name, & > .icon::before {
+    color: @text-color-selected !important;
+  }
+
+  &::before {
+    color: @text-color-selected !important;
+  }
+}
+
+.list-tree {
+  .selected::before {
+    background-color: @background-color-selected;
+  }
+}
+
+
+li.directory.selected > .header {
+  color: @text-color-selected;
+}
+
+.list-tree.has-flat-children {
+  .selected {
+    .selection-highlight();
+  }
+}
+
+.list-item.selected {
+  .icon::before {
+    color: @text-color-selected;
+  }
+
+  .selection-highlight();
+}
+
+// Select List
+// -----------
+
 .select-list {
   li {
-    padding: @component-padding/2 @component-padding;
+    padding: (@component-padding / 2) @component-padding;
   }
   .status {
     float: right;
@@ -40,20 +111,63 @@
 }
 
 
-// Popover List -------------------
+// Popover List
+// ------------
+//
 // Used as a popover for something like autocomplete.
+
 .select-list.popover-list {
-  @popover-list-padding: @component-padding/2;
+  @popover-list-padding: (@component-padding / 2);
 
   padding: @popover-list-padding;
   border-radius: @component-border-radius;
   background-color: @overlay-background-color;
-  box-shadow: 0 2px 8px 1px hsla(0,0%,0%,.3);
+  .box-shadow();
 
   .list-group {
     margin-top: @popover-list-padding;
     li {
       padding-left: @popover-list-padding;
+    }
+  }
+}
+
+.select-list:not(.popover-list) {
+  .list-group {
+    li.selected {
+      .icon {
+        color: @text-color-selected;
+      }
+    }
+  }
+
+  .mark-active {
+    li {
+      padding-left: @component-padding * 3;
+    }
+    .active {
+      &::before {
+        background-color: transparent;
+        font-family: 'Octicons Regular';
+        content: "\f03a";
+        display: inline-block;
+        position: absolute;
+        left: @component-padding;
+      }
+    }
+  }
+}
+
+.list-item {
+  &.selected {
+    color: @text-color-selected !important;
+  }
+}
+
+.list-group {
+  .two-lines, .FuzzyFinderResult {
+    .primary-line {
+      font-weight: 600;
     }
   }
 }

@@ -1,0 +1,151 @@
+.linter-annotation(@color, @fade) {
+  @lightened: lighten(@color, 20%);
+  @faded: fade(@lightened, @fade);
+  background-image: linear-gradient(
+    to top,
+    @faded 0px,
+    @faded 1px,
+    transparent 100%
+  ) !important;
+}
+
+.linter-squiggles(@color) {
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 65%,
+      @color 80%,
+      transparent 90%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 5%,
+      @color 15%,
+      transparent 25%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 45%,
+      @color 55%,
+      transparent 65%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 25%,
+      @color 35%,
+      transparent 50%
+    )
+}
+
+
+.tree-view {
+  .linter-warning {
+    .linter-annotation(@background-color-warning, 70%);
+  }
+
+  .linter-info {
+    .linter-annotation(@background-color-info, 70%);
+  }
+
+  .linter-error {
+    .linter-annotation(@background-color-error, 85%);
+  }
+}
+
+
+.linter-badge(@bg-color) {
+  background-color: @bg-color;
+  font-weight: 500;
+  border: 1px solid darken(@bg-color, 20%);
+  .box-shadow(1px, darken(@bg-color, 20%));
+  line-height: 12px;
+  font-size: 12px;
+  color: white;
+}
+
+#intentions-list {
+  font-family: @font-family;
+}
+
+@linter-table-header-background-color: hsl(@base-hue, 60%, 50%);
+
+#linter-panel {
+  .pinstripe();
+
+  thead {
+    background-color: @linter-table-header-background-color;
+
+    th:first-of-type {
+      width: 8rem;
+    }
+  }
+
+  th {
+    background-color: @linter-table-header-background-color;
+    .pinstripe(
+      hsla(darken(@linter-table-header-background-color, 7%), 30%),
+      rgba(0, 0, 0, 0)
+    );
+    color: @text-color-selected;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    border-bottom-color: @linter-table-header-background-color;
+    padding-top: 5px;
+    padding-bottom: $padding-top;
+    vertical-align: center;
+
+    border-bottom: 2px solid @box-shadow-color;
+    &:not(:last-of-type) {
+      border-right: 2px solid @box-shadow-color;
+    }
+
+    &:active {
+      transform: translate(1px, 1px);
+    }
+  }
+
+  tbody {
+    td {
+      background-color: @app-background-color;
+      font-weight: 400;
+    }
+
+    td:first-of-type {
+      text-align: right;
+    }
+
+    td:last-of-type {
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+  }
+
+  .solid-simple-table {
+    border: 0;
+    font-family: @font-family;
+  }
+
+  div.solid-simple-table.linter {
+    font-family: @font-family;
+    border: 0;
+    border-radius: 0.25em;
+    text-align: center;
+    padding: 0.25em 0;
+    // font-weight: bold;
+    max-width: 6rem;
+    margin: 0.25em auto 0.25em 0;
+
+    &.error {
+      .linter-badge(@background-color-error);
+    }
+
+    &.warning {
+      .linter-badge(@background-color-warning);
+    }
+
+    &.info {
+      .linter-badge(@background-color-info);
+      background-color: @background-color-info;
+    }
+  }
+}

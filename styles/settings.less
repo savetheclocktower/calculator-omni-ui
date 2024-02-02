@@ -1,0 +1,182 @@
+.control-label {
+  .setting-description {
+    font-weight: 300;
+    font-size: 13px;
+  }
+}
+
+.checkbox input[type='checkbox'] {
+  top: 3px;
+  background-color: @background-color-selected;
+  &:not(:checked) {
+    background-color: @input-background-color;
+  }
+}
+
+.setting-description {
+  code {
+    white-space: nowrap;
+  }
+
+  kbd {
+    background-color: @kbd-background-color;
+    .box-shadow(2px);
+    border: 1px solid darken(@kbd-border-color, 10%);
+    padding: 1px 4px;
+    // display: inline-block;
+    margin-right: 3px;
+  }
+
+  p {
+    margin-top: 0.5rem;
+  }
+}
+
+.settings-view .package-card.deprecated .deprecation-badge {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.6em;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.settings-view {
+  font-size: 12px;
+
+  .package-card {
+    // background-color: @package-card-background-color;
+    .pinstripe();
+  }
+}
+
+.settings-view.pane-item {
+  background-color: @settings-view-panel-background-color !important;
+
+  .table td.selector {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .config-menu {
+    background-color: desaturate(lighten(@pane-item-background-color, 5%), 5%) !important;
+    .pinstripe(
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.02)
+    );
+
+    .nav > li {
+      & > a:hover {
+        background-color:
+          hsl(@base-hue, 80%, @base-lightness);
+      }
+
+      & > a {
+        font-weight: 300;
+
+        // Icons need a nudge.
+        &::before {
+          top: 2px;
+        }
+      }
+
+      &.active > a {
+        font-weight: 500;
+        background-color: @background-color-selected;
+      }
+    }
+
+    .btn {
+      .btn();
+    }
+  }
+
+  .alert-info {
+    background-color: darken(@pane-item-background-color, 20%);
+  }
+
+  .keybinding-panel .is-user {
+    background-color: @background-color-selected;
+  }
+}
+
+// On the theme picker page, and perhaps elsewhere, a button sometimes appears
+// alongside a dropdown menu. Ensure the two controls have the same height.
+.settings-view .select-container {
+  display: flex;
+  align-items: stretch;
+
+  .btn {
+    height: auto;
+  }
+}
+
+.package-container {
+  margin-top: 1px;
+}
+
+.settings-panel {
+  // Hyperlinks in setting descriptions should not be subtle.
+  a, a:link {
+    text-decoration: underline;
+  }
+}
+
+.settings-view .sub-section {
+  & > .sub-section-heading {
+    z-index: 1;
+    // background-color: transparent;
+    background-color: @settings-view-panel-background-color;
+    letter-spacing: -0.5px;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    font-weight: 500;
+
+    &.icon::before {
+      top: 2px;
+      margin-right: 3px;
+    }
+  }
+}
+
+
+.settings-view .package-readme {
+  h1 {
+    --font-size: calc(var(--base-font-size) * 1.5);
+    font-weight: 700;
+  }
+
+  h2 {
+    --font-size: calc(var(--base-font-size) * 1.4);
+    font-weight: 600;
+  }
+
+  h3 {
+    --font-size: calc(var(--base-font-size) * 1.25);
+    font-weight: 500;
+  }
+
+  h4 {
+    --font-size: calc(var(--base-font-size) * 1.18);
+    font-weight: 400;
+  }
+
+  h5 {
+    --font-size: calc(var(--base-font-size) * 1.1);
+    font-weight: 400;
+  }
+
+  h6 {
+    --font-size: calc(var(--base-font-size) * 1.0);
+    font-weight: 400;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: var(--font-size);
+    margin-top: calc(var(--font-size) * 0.5);
+  }
+
+  p {
+    margin: 1rem 0;
+  }
+}

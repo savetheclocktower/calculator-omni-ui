@@ -8,6 +8,20 @@
 
 // Spinner -------------------
 
+@keyframes loading-spinner-animation {
+  0% {
+    transform: translateX(50%) rotateZ(0);
+  }
+
+  50% {
+    transform: translateX(50%) rotateZ(180deg);
+  }
+
+  100% {
+    transform: translateX(50%) rotateZ(360deg);
+  }
+}
+
 .loading-spinner-large  { .loading-spinner(64px); }
 .loading-spinner-medium { .loading-spinner(48px); }
 .loading-spinner-small  { .loading-spinner(32px); }
@@ -17,10 +31,72 @@
   display: block;
   width: @size;
   height: @size;
-  background-image: url(images/octocat-spinner-128.gif);
+  background-image: none;
   background-repeat: no-repeat;
   background-size: @size @size;
+  position: relative;
   &.inline-block {
     display: inline-block;
+  }
+
+  transform: translateX(0%) rotateZ(0);
+
+  animation: loading-spinner-animation;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+
+  &::before {
+    background-color: transparent;
+    font-family: 'Octicons Regular';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: @size * 0.75;
+    line-height: @size * 0.75;
+    text-align: center;
+    // Hourglass.
+    content: "\f09e";
+  }
+}
+
+@keyframes progress-animation {
+  0% {
+    background-position: 0px 0px;
+  }
+
+  100% {
+    background-position: 100% 0px;
+  }
+}
+
+@progress-bar-color: hsl(@base-hue, 80%, 35%);
+
+progress {
+  -webkit-appearance: none;
+  border-radius: @component-border-radius;
+  .pinstripe(
+    rgba(0, 0, 0, 0.16),
+    rgba(0, 0, 0, 0)
+  );
+  background-size: 1000% auto;
+  background-repeat: repeat-x repeat-y;
+  animation: 30s linear infinite progress-animation;
+
+  &::-webkit-progress-inner-element {
+    border-radius: @component-border-radius;
+    background-color: rgba(255, 255, 255, 0.5);
+    .box-shadow(2px, @progress-bar-color);
+    border: 1px solid darken(@progress-bar-color, 10%);
+  }
+
+  &::-webkit-progress-bar {
+    background: transparent;
+  }
+
+  &::-webkit-progress-value {
+    background-color: fade(@progress-bar-color, 50%);
+    filter: saturate(150%)
   }
 }

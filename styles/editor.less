@@ -1,24 +1,22 @@
+// @input-border-color: black;
 
 // Mini Editor
 // -------------------
 
 // Mini Editors are the "text inputs" used in find+replace or in the settings.
 
-
 atom-text-editor[mini] {
-  padding-left: @component-padding/2;
-  color: @text-color;
+  // height: @button-height;
+  padding-left: (@component-padding / 2);
   border-radius: @component-border-radius;
-  background-color: @input-background-color;
+  // box-shadow: 0 0 0 2px @input-border-color inset;
+  border: 1px solid @input-border-color;
+  // .box-shadow(1px, darken(@input-border-color, 30%));
 
   &.is-focused {
-    background-color: darken(@input-background-color, 5%);
-  }
-
-  .placeholder-text {
-    color: @text-color-subtle;
-  }
-  .selection .region {
-    background-color: @background-color-selected;
+    box-shadow: 0 0 2px 2px @input-focus-color;
   }
 }
+
+// Other mini-editor-related styles are defined in `optional/mini-editor.less`,
+// and are only included if the user opts into it.

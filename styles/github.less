@@ -1,0 +1,90 @@
+.github-HunkHeaderView {
+  &-stageButton,
+  &-discardButton {
+    .btn-stealth();
+  }
+
+  &--isSelected {
+    background-color: @background-color-selected;
+  }
+
+  &:focus {
+
+  }
+}
+
+.github-HunkHeaderView--isSelected {
+  .github-HunkHeaderView-title {
+    color: @text-color-selected;
+  }
+}
+
+.github-FilePatchView:focus-within {
+  .github-HunkHeaderView--isSelected {
+    // When this is selected, it's no longer in dark mode; UI colors take
+    // precedence. If it's not selected, it should blend in with the syntax
+    // theme, so we won't style that state.
+    .github-HunkHeaderView-title {
+      color: @text-color-highlight;
+    }
+  }
+}
+
+// The view in the sidebar that lists unstaged and staged files.
+.github-StagingView {
+
+  .github-StagingView-headerButton {
+    .btn-flat();
+    font-weight: 600;
+  }
+
+  .github-StagingView-title {
+    font-weight: 400;
+  }
+
+  .github-FilePatchListView-item.is-selected {
+    .github-FilePatchListView-icon:before {
+      color: @text-color-selected;
+    }
+  }
+
+  &:focus {
+    // Selected list items in the view get the wrong background color when the
+    // pane is focused.
+    .github-StagingView-group.is-focused .is-selected {
+      background-color: @background-color-selected;
+      color: @text-color-selected;
+      .github-FilePatchListView-icon:before {
+        color: @text-color-selected;
+      }
+    }
+  }
+}
+
+.github-Accordion-content:empty::before {
+  margin: 1rem;
+}
+
+.github-Project-lock.btn {
+  width: 35px;
+  background-color: @button-background-color;
+  border: 1px solid @button-border-color;
+  height: 28px;
+  margin-top: 0;
+
+  .icon {
+    line-height: 26px;
+
+    &.icon-unlock {
+      margin-top: 3px;
+    }
+  }
+
+  .icon::before {
+    // No text on this button, so no margin on the icon.
+    margin-right: 0;
+  }
+  // .btn-color(
+  //   darken(@background-color-info, 2%)
+  // );
+}

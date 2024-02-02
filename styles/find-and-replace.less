@@ -1,10 +1,151 @@
+:root {
+  --find-input-focus-color: @input-focus-color;
+  --find-input-background-color: darken(@input-focus-color, 50%);
+}
 
 // Find + Replace
-// -------------------
+// --------------
 
 // Find and replace in the current buffer or across the entire project.
 // Overrides: atom/find-and-replace
 
 .find-and-replace {
   border-top: 1px solid @base-border-color;
+
+  .input-block {
+    align-items: flex-end;
+  }
+
+  .header-item:not(.options-label) {
+    font-weight: 500;
+  }
+
+  .options-label {
+    font-size: @font-size - 1px;
+    font-weight: 300;
+    color: @text-color-subtle;
+    font-style: italic;
+  }
+
+  .options {
+    font-style: normal;
+  }
+
+  .btn-group-find,
+  .btn-group-find-all,
+  .btn-group-replace,
+  .btn-group-replace-all {
+    // Give these all equal flex-bases so that the "Find All" and "Replace All"
+    // buttons aren't twice as big as the others.
+    flex: 1 1;
+
+    // With .btn-group containers we apply the borders and box-shadows to the
+    // group and remove them from the individual buttons. These button groups
+    // aren't actually groups; they're useless containers around single
+    // buttons. So in those contexts we want to undo the button-like styles we
+    // typically apply to button groups and explicitly re-apply ordinary button
+    // styles to the buttons themselves.
+    .box-shadow(0);
+    border-width: 0;
+
+    & > .btn { .btn(); }
+  }
+
+  .options {
+    font-weight: 600;
+  }
+
+  // This is the element that indicates how many results there were, if any. We
+  // may or may not be styling mini-editors, so we don't know what background
+  // color we'll be atop. So let's style this to look more like a badge.
+  .find-meta-container {
+    .result-counter {
+      // The element we're styling to look like a badge is always present,
+      // whether it's got text inside of it or not. Luckily, when it's empty,
+      // it's targetable via the `:empty` pseudoclass.
+      &:empty { opacity: 0; }
+      opacity: 1;
+      border: 1px solid @base-border-color;
+      background-color: @app-background-color;
+      border-radius: @component-border-radius;
+      padding: 2px 5px;
+
+      color: @text-color;
+      &.text-subtle { color: @text-color; }
+    }
+  }
+}
+
+.find-container {
+  atom-text-editor[mini] {
+    .box-shadow(2px, @button-shadow-color);
+  }
+
+  atom-text-editor[mini].is-focused {
+    border: 1px solid var(--find-input-focus-color);
+    box-shadow: 0px 0px 0px 0px var(--find-input-focus-color),
+      2px 2px 0px 0px var(--find-input-focus-color);
+    background-color: var(--find-input-background-color);
+  }
+}
+
+.replace-container {
+  atom-text-editor[mini] {
+    box-shadow: 2px 2px 0px 0px @button-shadow-color;
+  }
+}
+
+
+// Find + Replace Results
+// ----------------------
+
+@text-color-selected-subtle: darken(@text-color-selected, 8%);
+
+.results-view-container {
+  .list-nested-item {
+    &.selected {
+      & > .list-item {
+        color: @text-color-selected;
+      }
+
+      .path-match-number {
+        color: @text-color-selected-subtle;
+      }
+
+      .icon::before {
+        color: @text-color-selected;
+      }
+    }
+  }
+
+  .list-tree {
+    .match-row {
+      &.selected {
+        .line-number { color: @text-color-selected-subtle; }
+      }
+
+      .text-subtle {
+        // color: @text-color-selected-subtle;
+      }
+    }
+  }
+}
+
+.find-and-replace.has-results {
+  --find-input-focus-color: @background-color-success;
+  --find-input-background-color: darken(@background-color-success, 33%);
+}
+
+.find-and-replace.has-no-results {
+  --find-input-focus-color: lighten(@background-color-error, 20%);
+  --find-input-background-color: darken(@background-color-error, 30%);
+}
+
+
+.find-and-replace,
+.preview-pane,
+.project-find {
+  .close-button {
+    color: @text-color;
+  }
 }

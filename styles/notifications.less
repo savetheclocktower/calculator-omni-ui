@@ -1,0 +1,91 @@
+@notification-background-color-error: lighten(@background-color-error, 25%);
+@notification-background-color-info: lighten(@background-color-info, 25%);
+@notification-background-color-success: lighten(@background-color-success, 25%);
+@notification-background-color-warning: lighten(@background-color-warning, 25%);
+
+atom-notifications {
+  atom-notification {
+
+    .close-all {
+      color: hsla(0, 0, 0, 80%) !important;
+      border: 1px solid hsla(0, 0, 0, 50%) !important;
+    }
+
+    .message {
+      & > *:first-child {
+        font-weight: 500;
+      }
+
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    &.warning {
+      .content {
+        background-color: @notification-background-color-warning;
+        color: darken(@text-color-warning, 60%);
+
+        code {
+          background-color: desaturate(lighten(@background-color-warning, 30%), 20%);
+          border-color: @background-color-warning;
+        }
+      }
+    }
+
+    &.error, &.fatal {
+
+      .content {
+        a:not(.btn) {
+          color: darken(@text-color-error, 30%);
+          font-weight: 600;
+        }
+
+        background-color: @notification-background-color-error;
+        color: darken(@text-color-error, 60%);
+
+        code {
+          background-color: desaturate(lighten(@background-color-error, 30%), 20%);
+          border-color: @background-color-error;
+        }
+      }
+    }
+
+    &.info {
+      .content {
+        background-color: @notification-background-color-info;
+        color: darken(@text-color-info, 60%);
+
+        code {
+          background-color: desaturate(lighten(@background-color-info, 30%), 20%);
+          border-color: @background-color-info;
+        }
+      }
+    }
+
+    &.success {
+      .content {
+        background-color: @notification-background-color-success;
+        color: darken(@text-color-success, 60%);
+
+        code {
+          background-color: desaturate(lighten(@background-color-success, 30%), 20%);
+          border-color: @background-color-success;
+        }
+      }
+    }
+
+    &.warning {
+      a {
+        text-shadow: 1px 1px 3px black;
+      }
+
+      .content {
+        background-color: @notification-background-color-warning;
+        code {
+          background-color: desaturate(lighten(@background-color-warning, 30%), 20%);
+          border-color: @background-color-warning;
+        }
+      }
+    }
+  }
+}

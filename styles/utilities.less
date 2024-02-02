@@ -1,0 +1,32 @@
+
+.box-shadow(@distance: 4px, @color: @box-shadow-color) {
+  box-shadow: @distance @distance 0px 0px @color;
+}
+
+.pinstripe(
+  @color1: fade(@base-border-color, 8%),
+  @color2: fade(@base-border-color, 0%),
+  @angle: -45deg
+) {
+  background-image: repeating-linear-gradient(
+    @angle,
+    @color1 0px,
+    @color1 2px,
+    @color2 3px,
+    @color2 6px
+  );
+}
+
+// TODO: This used to be a hack and is now greatly simplified. This mixin
+// probably doesn't need to exist anymore.
+.selection-highlight() {
+  &::before {
+    left: 0;
+    right: 0;
+  }
+}
+
+.atom-config(@keyPath) {
+  @plugin "utilities.js";
+  @value: atomConfig(@keyPath);
+}

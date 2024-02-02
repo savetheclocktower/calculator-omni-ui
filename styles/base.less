@@ -7,6 +7,9 @@
 
 // -------------------
 
+:root {
+  --base-font-size: @font-size;
+}
 
 body {
   font-size: @font-size;
@@ -14,9 +17,109 @@ body {
   background-color: @app-background-color;
 }
 
+code {
+  background-color: @background-color-highlight;
+  // background-color: @base-background-color;
+  border: 1px solid @base-border-color;
+}
+
+pre code {
+  border-width: 0;
+}
+
+h1 {
+  font-size: calc(var(--base-font-size) * 1.6);
+}
+
+h2 {
+  font-size: calc(var(--base-font-size) * 1.5);
+}
+
+h3 {
+  font-size: calc(var(--base-font-size) * 1.4);
+}
+
+h4 {
+  font-size: calc(var(--base-font-size) * 1.2);
+}
+
+h5 {
+  font-size: calc(var(--base-font-size) * 1.1);
+}
+
+h6 {
+  font-size: var(--base-font-size);
+}
+
 atom-pane {
   border-right: 1px solid @base-border-color;
   &:last-child {
     border-right: none;
   }
+}
+
+.settings-view .package-readme {
+  --base-font-size: 1.15em;
+  font-size: var(--base-font-size);
+}
+
+
+input[type='checkbox'],
+select.form-control {
+  border: 1px solid @button-border-color;
+}
+
+atom-panel.tool-panel {
+  border-color: @tool-panel-border-color;
+}
+
+.tool-panel {
+  z-index: 1;
+  .pinstripe(
+    hsla(@base-hue, 100%, 20%, 0.02),
+    hsla(@base-hue, 100%, 20%, 0),
+  );
+}
+
+atom-panel.footer {
+  border-width: 0;
+}
+
+.project-find {
+  // Vertically align the find/replace text boxes alongside their accompanying
+  // buttons.
+  .input-block {
+    align-items: center;
+  }
+
+  .header-item.options-label {
+    font-size: 12px;
+    // font-weight: 200;
+
+    .options {
+      font-weight: 600;
+    }
+  }
+
+}
+
+.alert {
+  .pinstripe();
+}
+
+.badge {
+  font-weight: 600;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+atom-editor:not([mini]) {
+  ::-webkit-input-placeholder,
+  .placeholder-text {
+    color: fade(@text-color, 45%) !important;
+  }
+}
+
+.atom-content-dock-wrapper {
+  z-index: 2;
 }
